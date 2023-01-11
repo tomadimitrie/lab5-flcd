@@ -1,0 +1,22 @@
+N = program, statement_list, statement_recursive, statement, block, if, while, assignment, condition, read, write, declaration, expression, expression_cont, expression_rest, expression_recursive, value, identifier, arithmetic, string, integer, type, relation
+E = "\n", "{", "}", if, while, "write(", ")", ":", "read()", "var", "while", "if", "else", "="
+
+S = program
+P = 
+    program -> statement_list
+    statement_list -> statement "\n" statement_recursive
+    statement_recursive -> E | statement_list
+    statement -> declaration | assignment | if | while
+    block -> "{" statement_list "}"
+    if -> "if" condition "{" statement_list "}"
+    while -> "while" condition "{" statement_list "}"
+    assignment -> identifier "=" expression
+    condition -> value relation value
+    read -> "read()"
+    write -> "write(" expression ")"
+    declaration -> "var" identifier ":" type
+    expression -> value expression_recursive
+    expression_cont -> arithmetic value
+    expression_rest -> expression_cont expression_recursive
+    expression_recursive -> E | expression_rest
+    value -> identifier | string | integer

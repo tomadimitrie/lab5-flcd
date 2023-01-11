@@ -1,0 +1,8 @@
+N = S, A, B, C
+E = (, ), +, *, var
+S = S
+P =
+    S -> A B
+    A -> ( S ) | var C
+    B -> + S | E
+    C -> * A | E

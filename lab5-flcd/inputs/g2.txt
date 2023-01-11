@@ -1,0 +1,25 @@
+start finish def int char string { } ; : + - * / ( ) [ ] while execute if then else read log id const < <= == != >= > = exit
+program compound_statement statement stmtTemp declaration_statement primitive_type assignment_statement io_statement read_statement write_statement expression arithmetic1 arithmetic2 multiply1 multiply2 if_statement condition temp_if while_statement relational_operator typeTemp init_statement
+program
+program -> start compound_statement finish
+compound_statement -> statement ; stmtTemp
+stmtTemp -> ε | compound_statement
+declaration_statement -> def id : primitive_type init_statement
+init_statement -> ε | = expression
+primitive_type -> int typeTemp | char | string
+typeTemp -> ε | [ const ]
+statement -> declaration_statement | assignment_statement | io_statement | if_statement | while_statement | exit
+io_statement -> read_statement | write_statement
+assignment_statement -> id = expression
+read_statement -> read ( id )
+write_statement -> log ( expression )
+expression -> arithmetic2 arithmetic1
+arithmetic1 -> + arithmetic2 arithmetic1 | - arithmetic2 arithmetic1 | ε
+arithmetic2 -> multiply2 multiply1
+multiply1 -> * multiply2 multiply1 | / multiply2 multiply1 | ε
+multiply2 -> ( expression ) | id | const
+if_statement -> if ( condition ) then { statement } temp_if
+temp_if -> ε | else { statement }
+while_statement -> while ( condition ) execute { statement }
+condition -> expression relational_operator expression
+relational_operator -> < | <= | == | != | >= | >
